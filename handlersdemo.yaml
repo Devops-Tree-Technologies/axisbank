@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  gather_facts: no
+  vars_files:
+   - vars.yaml
+  handlers:
+   - name: Restart the httpd service
+     service:
+      name: httpd
+      state: restarted 
+  tasks: 
+   - name: Install HTTP Server
+     yum:
+      name: httpd
+      state: latest
+   - name: Copy index.html
+     template:
+      src: index.html
+      dest: /var/www/html/index.html
+     notify:
+      - Restart the httpd service
+...

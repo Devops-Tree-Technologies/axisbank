@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+   - name: Install Apache HTTP Server in RedHat Server
+     yum:
+      name: httpd
+      state: present
+     when: ansible_distribution == "RedHat"
+   - name: Install Apache HTTP Server in Ubuntu Server
+     apt:
+      name: apache2
+      state: present
+     when: ansible_distribution == "Ubuntu"
+...
