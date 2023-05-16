@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: no
+  vars:
+   companyName: MT
+   location: Karnataka
+  tasks: 
+   - name: Display Variable Values
+     debug:
+      #var: companyName
+      msg: "The Company name is: {{companyName}}"
+...
